@@ -1,2 +1,5 @@
-# cpp
-C++ snippets
+# C++
+
+- [ ] clang-format
+- [ ] tests
+- [ ] CI
