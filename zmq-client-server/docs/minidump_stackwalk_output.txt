@@ -1,0 +1,80 @@
+Operating system: Linux
+                  0.0.0 Linux 4.8.15-300.fc25.x86_64 #1 SMP Thu Dec 15 23:10:23 UTC 2016 x86_64
+CPU: amd64
+     family 6 model 78 stepping 3
+     1 CPU
+
+GPU: UNKNOWN
+
+Crash reason:  SIGSEGV
+Crash address: 0x0
+Process uptime: not available
+
+Thread 0 (crashed)
+ 0  client.exe!main [client.cpp : 14 + 0x0]
+    rax = 0xffffffffffffffff   rdx = 0x00000000004029d6
+    rcx = 0x00007ffe97bf9430   rbx = 0x0000000000000004
+    rsi = 0x0000000000000000   rdi = 0x0000000000621c60
+    rbp = 0x00007ffe97bf9550   rsp = 0x00007ffe97bf9380
+     r8 = 0x0000000000000000    r9 = 0x0000000000000000
+    r10 = 0x0000000000000131   r11 = 0x00007f8b876d1550
+    r12 = 0x00007ffe97bf9440   r13 = 0x00007ffe97bf9650
+    r14 = 0x0000000000000000   r15 = 0x0000000000000000
+    rip = 0x0000000000402988
+    Found by: given as instruction pointer in context
+ 1  libc-2.24.so + 0x89100
+    rbp = 0x00007ffe97bf9550   rsp = 0x00007ffe97bf9420
+    rip = 0x00007f8b86ae1100
+    Found by: stack scanning
+ 2  client.exe!frame_dummy + 0x30
+    rbp = 0x00007ffe97bf9550   rsp = 0x00007ffe97bf9440
+    rip = 0x0000000000402b90
+    Found by: stack scanning
+ 3  libc-2.24.so + 0x89100
+    rbp = 0x00007ffe97bf9550   rsp = 0x00007ffe97bf94d0
+    rip = 0x00007f8b86ae1100
+    Found by: stack scanning
+ 4  client.exe + 0x2a90
+    rbp = 0x00007ffe97bf9550   rsp = 0x00007ffe97bf9550
+    rip = 0x0000000000402a90
+    Found by: stack scanning
+ 5  client.exe + 0x190e0
+    rsp = 0x00007ffe97bf9558   rip = 0x00000000004190e0
+    Found by: stack scanning
+ 6  libc-2.24.so + 0x20401
+    rsp = 0x00007ffe97bf9560   rip = 0x00007f8b86a78401
+    Found by: stack scanning
+ 7  libc-2.24.so + 0x20401
+    rsp = 0x00007ffe97bf9580   rip = 0x00007f8b86a78401
+    Found by: stack scanning
+ 8  client.exe + 0x2800
+    rsp = 0x00007ffe97bf95a0   rip = 0x0000000000402800
+    Found by: stack scanning
+ 9  client.exe + 0x2a90
+    rsp = 0x00007ffe97bf95b8   rip = 0x0000000000402a90
+    Found by: stack scanning
+10  ld-2.24.so + 0x10b4b
+    rsp = 0x00007ffe97bf9610   rip = 0x00007f8b87b76b4b
+    Found by: stack scanning
+11  client.exe + 0x2a90
+    rsp = 0x00007ffe97bf9628   rip = 0x0000000000402a90
+    Found by: stack scanning
+12  client.exe!_start + 0x2a
+    rsp = 0x00007ffe97bf9640   rip = 0x0000000000402aba
+    Found by: stack scanning
+13  0x7ffe97bf9648
+    rsp = 0x00007ffe97bf9648   rip = 0x00007ffe97bf9648
+    Found by: call frame info
+
+Loaded modules:
+0x00400000 - 0x00420fff  client.exe  ???  (main)
+0x7f8b8664c000 - 0x7f8b8664efff  libdl-2.24.so  ???
+0x7f8b86850000 - 0x7f8b86856fff  librt-2.24.so  ???
+0x7f8b86a58000 - 0x7f8b86c14fff  libc-2.24.so  ???  (WARNING: No symbols, libc-2.24.so, E852D91BC47FD0578ACFDC6E085C24290)
+0x7f8b86e1e000 - 0x7f8b86e33fff  libgcc_s-6.3.1-20161221.so.1  ???
+0x7f8b87035000 - 0x7f8b8713cfff  libm-2.24.so  ???
+0x7f8b8733e000 - 0x7f8b874b5fff  libstdc++.so.6.0.22  ???
+0x7f8b876c6000 - 0x7f8b876ddfff  libpthread-2.24.so  ???
+0x7f8b878e4000 - 0x7f8b87960fff  libzmq.so.5.1.0  ???
+0x7f8b87b66000 - 0x7f8b87b8afff  ld-2.24.so  ???  (WARNING: No symbols, ld-2.24.so, 4523BC25A5FB240F577D3B856D08648E0)
+0x7ffe97bfe000 - 0x7ffe97bfffff  linux-gate.so  ???
