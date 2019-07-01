@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Embedding Vega-Lite</title>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.4.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@3.3.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@4.2.0"></script>
+  </head>
+  <body>
+    <div id="vis" style="width: 500px; height: 500px; display: block;"></div>
+
+    <script type="text/javascript">
+      var yourVlSpec = {
+        $schema: 'https://vega.github.io/schema/vega-lite/v2.0.json',
+        description: 'A simple bar chart with embedded data.',
+        data: {
+          values: [
+            {"name":"bench_vector/5/100","time":5.21692411484094},
+            {"name":"bench_vector/50/100","time":5.689774144682562},
+            {"name":"bench_vector/95/100","time":5.140243357632858},
+            {"name":"bench_vector/5/10000","time":9.390040274620768},
+            {"name":"bench_vector/5000/10000","time":9.654179035589102},
+            {"name":"bench_vector/9995/10000","time":9.422018732950942},
+            {"name":"bench_umap/5/100","time":8.708974494793774},
+            {"name":"bench_umap/50/100","time":8.7558074547704},
+            {"name":"bench_umap/95/100","time":8.721990534254909},
+            {"name":"bench_umap/5/10000","time":8.661954474776751},
+            {"name":"bench_umap/5000/10000","time":8.693006784031681},
+            {"name":"bench_umap/9995/10000","time":8.696329892198005},
+            {"name":"bench_map/5/100","time":3.592780870065099},
+            {"name":"bench_map/50/100","time":6.379403873219417},
+            {"name":"bench_map/95/100","time":6.087857521132059},
+            {"name":"bench_map/5/10000","time":7.781627766303326},
+            {"name":"bench_map/5000/10000","time":11.433937144601499},
+            {"name":"bench_map/9995/10000","time":41.64587018602751}
+          ]
+        },
+        mark: 'bar',
+        encoding: {
+          x: {field: 'name', type: 'ordinal'},
+          y: {field: 'time', type: 'quantitative'}
+        },
+        width: 1000,
+        height: 600,
+      };
+      vegaEmbed('#vis', yourVlSpec);
+    </script>
+  </body>
+</html>
