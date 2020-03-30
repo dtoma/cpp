@@ -86,8 +86,14 @@ void set_msb(unsigned char &byte, bool bit)
  * be somewhat performant thanks to SSO, compile quickly,
  * and be easy to debug since it doesn't have template magic.
  * 
+ * Inspiration: https://github.com/elliotgoodrich/SSO-23/blob/master/include/string.hpp
+ * 
  * TODO:
  * - move constructors
+ *   + rule of 5: https://en.cppreference.com/w/cpp/language/rule_of_three
+ *   + assertions: https://howardhinnant.github.io/classdecl.html
+ * - comparison operators
+ * 
  */
 class String final
 {
@@ -334,9 +340,7 @@ public:
     }
 };
 
-static_assert(std::is_destructible<String>{}, "Must be destructible");
-static_assert(std::is_default_constructible<String>{}, "Must be default constructible");
-static_assert(std::is_copy_constructible<String>{}, "Must be copy constructible");
-static_assert(std::is_copy_assignable<String>{}, "Must be copy assignable");
-// static_assert(std::is_move_constructible<String>{});
-// static_assert(std::is_move_assignable<String>{});
+static_assert(std::is_destructible<String>{});
+static_assert(std::is_default_constructible<String>{});
+static_assert(std::is_copy_constructible<String>{});
+static_assert(std::is_copy_assignable<String>{});
