@@ -4,6 +4,8 @@
 
 #include "string.hpp"
 
+using namespace dtoma;
+
 TEST(TestString, TestDefaultConstructor)
 {
     String s;

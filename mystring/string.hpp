@@ -1,5 +1,7 @@
 #pragma once
 
+#include <climits>
+#include <cstring>
 #include <iterator>
 #include <memory>
 #include <string>
@@ -71,6 +73,9 @@ void set_msb(unsigned char &byte, bool bit)
 
 } // namespace
 
+namespace dtoma
+{
+
 /**
  * String class.
  * 
@@ -107,11 +112,14 @@ class String final
             std::size_t size;
             std::size_t capacity;
         } non_sso;
+
         struct SSO
         {
             char ptr[sizeof(NonSSO) / sizeof(char) - 1];
             std::make_unsigned_t<char> size;
         } sso;
+
+        static_assert(sizeof(NonSSO) == sizeof(SSO));
     } _data;
 
     /**
@@ -152,6 +160,7 @@ class String final
 public:
     /**
      * Types
+     * Define enough types to be somewhat compatible with the STL (eg. algorithms).
      */
     using value_type = char;
     using traits_type = std::char_traits<value_type>;
@@ -171,6 +180,9 @@ public:
     using reverse_iterator = std::reverse_iterator<iterator>;
     using const_reverse_iterator = std::reverse_iterator<const_iterator>;
 
+    /**
+     * Helper that contains the maximum size we can use for SSO.
+     */
     static std::size_t const sso_capacity = //
         sizeof(typename Data::NonSSO) / sizeof(value_type) - 1;
 
@@ -243,6 +255,7 @@ public:
     /**
      * Public interface.
      */
+
     char const *data() const noexcept
     {
         if (this->sso())
@@ -289,58 +302,26 @@ public:
     /**
      * Iterator interface.
      */
-    iterator begin()
-    {
-        return this->data();
-    }
 
-    iterator end()
-    {
-        return this->data() + this->size();
-    }
+    iterator begin() { return this->data(); }
+    iterator end() { return this->data() + this->size(); }
 
-    const_iterator begin() const
-    {
-        return this->data();
-    }
+    const_iterator begin() const { return this->data(); }
+    const_iterator end() const { return this->data() + this->size(); }
 
-    const_iterator end() const
-    {
-        return this->data() + this->size();
-    }
+    reverse_iterator rbegin() { return reverse_iterator(this->end()); }
+    reverse_iterator rend() { return reverse_iterator(this->begin()); }
 
-    reverse_iterator rbegin()
-    {
-        return reverse_iterator(this->end());
-    }
+    const_reverse_iterator crbegin() const { return const_reverse_iterator(this->end()); }
+    const_reverse_iterator crend() const { return const_reverse_iterator(this->begin()); }
 
-    reverse_iterator rend()
-    {
-        return reverse_iterator(this->begin());
-    }
-
-    const_reverse_iterator crbegin() const
-    {
-        return const_reverse_iterator(this->end());
-    }
-
-    const_reverse_iterator crend() const
-    {
-        return const_reverse_iterator(this->begin());
-    }
-
-    reference operator[](size_type pos)
-    {
-        return this->data()[pos];
-    }
-
-    const_reference operator[](size_type pos) const
-    {
-        return this->data()[pos];
-    }
+    reference operator[](size_type pos) { return this->data()[pos]; }
+    const_reference operator[](size_type pos) const { return this->data()[pos]; }
 };
 
 static_assert(std::is_destructible<String>{});
 static_assert(std::is_default_constructible<String>{});
 static_assert(std::is_copy_constructible<String>{});
 static_assert(std::is_copy_assignable<String>{});
+
+} // namespace dtoma

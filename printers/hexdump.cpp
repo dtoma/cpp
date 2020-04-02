@@ -1,5 +1,4 @@
 #include <fstream>
-#include <iostream>
 #include <memory>
 #include <sstream>
 #include <string>
@@ -10,7 +9,7 @@ int main(int ac, char **av)
 {
     if (ac != 2)
     {
-        std::cout << fmt::format("Usage: {} <file>", av[0]);
+        fmt::print("Usage: {} <file>", av[0]);
         return 1;
     }
     std::string filename(av[1]);

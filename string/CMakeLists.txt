@@ -1,4 +1,0 @@
-add_executable(stringTests test.cpp)
-target_link_libraries(stringTests gtest_main)
-target_compile_features(stringTests PRIVATE cxx_std_17)
-gtest_discover_tests(stringTests)
