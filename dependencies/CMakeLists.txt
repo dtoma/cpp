@@ -1,3 +1,13 @@
+##########################
+# Boost External Project #
+##########################
+
+add_subdirectory(boost)
+
+###############################
+# Dependencies that use CMake #
+###############################
+
 include(FetchContent)
 
 FetchContent_Declare(googletest
@@ -19,6 +29,11 @@ FetchContent_Declare(regex
     GIT_TAG 2020-04-01
 )
 
+FetchContent_Declare(nlohmann_json
+    GIT_REPOSITORY https://github.com/nlohmann/json.git
+    GIT_TAG v3.7.3
+)
+
 # Otherwise we get big long LNK2038 errors on Windows
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 
@@ -38,9 +53,15 @@ set(BENCHMARK_ENABLE_TESTING OFF)
 # This works:
 set(RE2_BUILD_TESTING OFF CACHE BOOL "" FORCE)
 
+# Don't build nlohmann/json's tests
+set(JSON_BuildTests OFF CACHE INTERNAL "")
+
 FetchContent_MakeAvailable(
     googletest
     benchmark
     fmt
     regex
+    nlohmann_json
 )
+
+include_directories(${nlohmann_json_SOURCE_DIR}/single_include)
